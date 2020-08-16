@@ -1,0 +1,47 @@
+#git级别命令使用
+--创建git账号
+git config --global user.name "zhangsan"
+git config --global user.email "564234543@qq.com"
+--查看git信息
+git config user.name
+git config user.email
+--取消掉当前的用户重新设置新的用户名和邮箱可以使用
+git config --global --unset user.name "zhangsan"
+git config --global --unset user.email "564234543@qq.com"
+--切换到E盘
+cd e:
+--创建本地文件夹
+mkdir git
+--进入文件夹
+cd git
+--创建文件
+touch git.txt
+--pwd查看路径
+pwd
+--git init #命令初始化本地仓库
+--git status #命令查看当前仓库文件状态
+--git add git.txt #命令把git.txt文件加到缓存区。
+--git commit -m "版本描述" #命令从缓存区提交到版本库
+--git diff git.txt #命令查看文件内容变动
+--git log #命令查看历史版本记录
+--git log --pretty=oneline #命令查看以每次版本变更为一行，查看版本记录
+--git reflog #命令查看比当前新的版本
+--git reset --hard HEAD^ #命令回退到上一版本，上上一版本后面再加个^。以此类推
+--git reset --hard HEAD~50 #命令回退到前50个版本
+--git reset --hard 版本号 #命令回退到指定版本
+--git checkout -- git.txt #命令把未添加到缓存区的内容撤销
+--git branch a #命令创建a分支
+--git branch #命令查看分支情况
+--git checkout a #命令切换到a分支
+--git merage a #命令将a分支合并到master(此操作需切回master分支)
+--rm git.txt #命令删除文件
+
+#github远程仓库操作
+--git push origin master #命令将本地仓库文件推送到远程仓库
+--git pull origin master #命令将远程仓库文件拉取到本地仓库
+--git remote add origin git@github.com:ZacharyTaite/JavaWeb.git #命令将本地版本库和远程版本库进行关联
+--git pull --rebase origin master #命令将远程版本库中的README.txt文件拉取到本地
+--git push -u origin master #命令第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来
+--git remote rm origin #命令远程版本库已经退出
+
+

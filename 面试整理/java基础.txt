@@ -1,0 +1,145 @@
+
+抽象的概念：
+抽象是把多个事物的共性的内容抽取出来，本质就是把我们关注的内容抽取出来。
+
+继承的概念:
+对象的一个新类可以从现有的类中派生，这个过程就是类的继承，子类继承父类的特性。子类可以从父类继承方法和实例变量，并且子类可以修改或增加新的方法以便更适合的使用。{继承主要实现重用代码，节省开发时间。}
+
+封装的概念：
+{封装是实现面向对象程序设计的第一步，封装就是将数据或函数等集合在一个个的单元中（我们称之为类）。被封装的对象通常被称为抽象数据类型}
+
+多态的概念：
+多态就是同一个接口，使用不同的实例而执行不同操作
+构造器不可被Override但是可以Overload。{
+多态：同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。在运行时，可以通过指向基类的指针，来调用实现派生类中的方法。}
+
+Java是值传递还是引用传递？
+值传递，一个对象被当作参数传递进一个方法后，值被改变，在此方法结束后，被改变的值将保留，那是因为参数的值就是对该对象的引用，所以引用其实是不同的，但是所指对象是相同的。
+
+JVM加载类文件的原理机制
+JVM中类的装载是由ClassLoader和它的子类来实现，ClassLoader是一个重要的Java运行时系统组件，负责在运行时查找和装入类文件的类。
+
+是否可以从一个static方法内部发出对非static方法的调用
+任何程序最终都是在内存中执行的，变量只有在内存中占有一席之地时才能被访问，不在内存中的变量就不能被访问。类的静态成员（变量和方法）都属于类本身，在类加载的时候就会分配内存，可以通过类名直接访问；
+
+非静态成员（变量和方法）属于类的对象，所以只有在类的对象产生（创建类的实例）时才会分配内存，然后通过类的对象（实例）去访问。
+
+Exception:
+运行时异常与一般异常有何不同
+异常表示程序运行过程中可能出现的非正常状态，运行时异常表示虚拟机的通常操作中可能遇到的异常，是一种常见运行错误。Java编译器要求方法必须声明抛出可能发生的非运行时异常，但并不要求必须声明抛出未被捕获的运行时异常。
+ 
+Error和Exception的区别
+Error表示恢复很困难的一种严重问题，一般由os或jvm抛出。Exception表示一种设计或实现问题，一般由运行的程序本身产生和抛出。
+
+try里有个return语句，紧跟在try后的finally中的code是否会被执行
+会，在return之前。
+
+Collection:
+说出ArrayList,Vectory,LinkedList的存储性能和特性
+ArrayList和Vectory实现了线性结构，遍历元素时，效率较高，LinkedList实现了链表结构（双向循环），插入和删除效率较高，ArrayList是线程异步，Vectory是线程同步，所以执行效率Vectory较低，但是数据安全性较高。
+
+Collection和Collections的区别
+Collection是集合框架的父接口，其直接子接口主要有Set和List。Collections是针对集合类的一个工具类，提供一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。
+
+List,Set,Map是否继承自Collection接口？
+List,Set是；Map不是。
+
+Set里的元素是不能重复的，那么用什么方法来区分是否重复？是用==还是equals？有什么区别？
+通过iterator来区分是否重复。==判断的是地址，equals判断内容和类型是否相同
+
+简述synchronized（ 同步的）和java.util.concurrent.locks.Lock的异同
+Lock能完成synchronized所实现的所有功能。Lock有比synchronized更精确的线程语义和更好的性能。synchronized会自动释放锁，而Lock一定要求程序员手动释放，并且必须在finally中释放。
+
+IO:
+Java中有几种类型的流？
+根据不同的分类可以分为：输入流和输出流、字节流和字符流、节点流和介质流。{
+按照流是否直接与特定的地方(如磁盘、内存、设备等)相连，分为节点流和处理流两类。
+　　节点流：可以从或向一个特定的地方(节点)读写数据。如FileReader.
+　　处理流：是对一个已存在的流的连接和封装，通过所封装的流的功能调用实现数据读写。如BufferedReader.处理流的构造方法总是要带一个其他的流对象做参数。一个流对象经过其他流的多次包装，称为流的链接。
+}
+
+Java中访问数据库的步骤,Statement和PreparedStatement的区别？
+（1）.注册驱动
+（2）创建连接
+（3）创建执行对象
+（4）执行SQL语句
+（5）处理结果集
+（6）关闭连接
+PreparedStatement是预编译的处理语句，可以使语句本身保存在内存中，在多次执行时效率很高。
+
+JDBC如何实现分页
+JDBC分页分为数据库分页和应用程序分页两种。应用程序分页讲求将所有符合条件数据一次性取出，存放在数组或动态数组中，然后按要求提取。数据库分页按照数据库的不同，采取的方式也不一样，如MSSQL中按照TOP来进行分页，而Oracle中则根据伪列来进行分页。
+
+事务处理的方法
+Connection中有3种事务处理方案:setAutoCommit(boolean)自动提交;commit()提交;rollback回滚。
+
+Servlet生命周期，说出Servlet和CGI的区别
+生命周期：new>init>service>destory。
+CGI对每个请求都产生新的进程，而servlet是通过多线程的方式服务于每个请求。CGI效率较低。
+
+JSP的内置对象及方法
+request表示HttpServletRequest对象。它包含了有关浏览器请求的信息，并且提供了几个用于获取cookie, header, 和session数据的有用的方法。
+response表示HttpServletResponse对象，并提供了几个用于设置送回浏览器的响应的方法（如cookies,头信息等）。
+out对象是javax.servlet.jsp.JspWriter的一个实例，并提供了几个方法使你能用于向浏览器回送输出结果。
+pageContext表示一个javax.servlet.jsp.PageContext对象。它是用于方便存取各种范围的名字空间、servlet相关的对象的API，并且包装了通用的servlet相关功能的方法。
+session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存贮用户的状态信息。
+applicaton 表示一个javax.servle.ServletContext对象。这有助于查找有关servlet引擎和servlet环境的信息。
+config表示一个javax.servlet.ServletConfig对象。该对象用于存取servlet实例的初始化参数。
+page表示从该页面产生的一个servlet实例。
+exception记录了页面中的异常信息，此对象只可在page指令属性isErrorPage=”true”的页面中才能访问到。
+
+什么情况下调用goGet()和doPost()
+servlet在接收到用户请求时，调用service方法，此方法根据请求的类型(get或post)调用相应的方法。
+
+MVC的各个部分都有哪些技术来实现？
+Java的WEB应用中，M层由JavaBean来实现，V层由JSP或HTML来实现，C层由Servlet来实现。
+
+JSP的四种范围
+page是代表与一个页面相关的对象和属性。
+request是代表与web客户机发出的一个请求相关的对西哪个和属性，一个请求可能跨越多个页面。
+session是代表与用于某个web客户机的一个用户体验相关的对象和属性。一个web会话可以跨越多个客户请求。
+application代表与整个web应用程序相关的对象和属性。跨越整个web应用程序，包括多个页面，请求和会话。
+
+请解释一下以下J2EE名词：WEB容器、EJB容器、JNDI、JMS、JTA、JAF、RMI/IIOP
+WEB容器：给处于其中的应用程序组件（JSP、Servlet）提供一个环境，使JSP、Servlet直接与容器中的环境变量接口交互，不必关注其它系统问题。该容器提供的接口严格遵守J2EE规范中的WebApplication标准。遵守以上标准的WEB服务器就叫做J2EE的WEB容器。
+EJB容器：EnterpriseJavaBean容器。更具有行业领域特色。提供给运行在其中的组件EJB各种管理功能。只要满足J2EE规范的EJB放入该容器，马上就会被容器进行高效率的管理。并且可以通过现成的接口来获得系统级别的服务。
+JNDI：（Java Naming & Directory Interface）Java命名目录服务。主要提供的功能是：提供一个目录系统，让其它各地的应用程序在某上面留下自己的索引，从而满足快速查找和定位分布式应用程序的功能。
+JMS：（Java Message Service）Java消息服务。主要实现各个应用程序之间的通讯。包括点对点和广播。
+JTA：（Java Transaction API）Java事务服务。提供各种分布式事务服务。应用程序只需调用其提供的接口即可。
+JAF：（Java Action Framework）Java安全认证框架。提供一些安全控制方面的框架。让开发者通过各种部署和自定义实现自己的个性安全控制策略。
+RMI/IIOP（Remote Method Invocation/internet对象请求中介协议）他们主要用于通过远程调用服务。
+
+什么是ORM？
+Object Relational Mapping。是一种为了解决面向对象与面向关系数据库存在的互不匹配的现象的技术。通过使用描述对象和数据库之间映射的元数据，将java程序中的对象自动持久化到关系数据库中。
+
+Hibernate有哪5个核心接口
+Configuration:配置Hibernate,根据其启动hibernate,创建SessionFaction对象。
+SessionFactory:初始化Hibernate,充当数据存储源的代理，创建session对象，SessionFactiory是线程安全的，同一个实例可以被应用的多个线程共享。
+Session:负责保存、更新、删除、加载和查询对象，线程不安全，需要避免多个线程共享同一个session。
+Transaction:管理事务。
+Query和Criteria:执行数据库的查询。
+
+关于Hibernate，配置文件呈现一对多，多对多的标签是什么？Hibernate的二级缓存是什么？Hibernate是如何处理事务的？
+一对多的标签是<one-to-many>,多对多的标签是<many-to-many>。SessionFactory的缓存是Hibernate的二级缓存。Hibernate的事务实际上是底层的JDBC Transaction的封装或者是JTA Transaction的封装。默认情况下使用JDBC Transaction。
+
+Spring:
+简述Spring框架。
+Spring框架是一个分层架构，由七个定义良好的模块组成，Spring模块构建在核心容器之上，核心容器定义了创建、配置和管理bean的方式。组成Spring框架的每个模块都可以单独存在，或者与其他一个或多个模块联合实现。
+Spring Core、Spring Context、Spring AOP、Spring DAO、Spring ORM、Spring Web、Spring MVC
+
+3张表student学生表（学号，姓名，性别，年龄，组织部门）、course课程表（编号，课程名称）、sc选课表（学号，课程编号，成绩）。
+写一个SQL语句，查询选修了“计算机原理”的学生学号和姓名。
+写一个SQL语句，查询“周星驰”同学选修的课程名称。
+写一个SQL语句，查询选修了5门课程的学生学号和姓名。
+写一个SQL语句，查询选修了所有课程的学生学号和姓名。
+（1）SELECT sno,sname FROM student stu WHERE stu.sno IN (SELECT sc.sno FROM sc WHERE sc.cno = (SELECT course.cno FROM course WHERE cname LIKE ‘计算机原理’));
+（2）SELECT cname FROM course cou WHERE cou.cno IN (SELECT sc.cno FROM sc WHERE sc.sno IN (SELECT student.sno FROM student WHERE sname like ‘周星驰’));
+（3）SELECT student.sno,sname FROM student WHERE student.sno IN (SELECT sc.sno FROM sc GROUP BY sc.sno HAVING count(*)=5);
+（4）SELECT student.sno,sname FROM student WHERE student.sno IN (SELECT sc.sno FROM sc GROUP BY sc.sno HAVING count(*)=(SELECT count(*) FROM course));
+ 
+有一张表EMP，表中字段为（empno,ename,mgr,age）,写出语句查询所有雇员年龄大于其领导的人员名单。
+SELECT worker.ename FROM emp worker WHERE worker.age>(SELECT manager.age FROM emp manager WHERE manager.empno = worker.mgr);
+ 
+有两张表分别代表的省和市的信息，其中省信息表中字段为（stateno,statename）,市信息表中字段为（cityno,cityname,stateno），省信息表中有广东，江苏，辽宁，黑龙江，市信息表中有上海，广州，北京，南京。现在需要查询出所有市信息及相关省信息，请写出查询语句。
+SELECT cityname,cityno,s.stateno,s.statename FROM city c,state s WHERE c.stateno = s.stateno(+);
+
